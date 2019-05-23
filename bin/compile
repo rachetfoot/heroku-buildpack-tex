@@ -9,7 +9,7 @@ CACHE_DIR=$2
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 
 
-TEXLIVE_INSTALLER_URL="ftp://tug.org/historic/systems/texlive/2018/tlnet-final/install-tl-unx.tar.gz"
+TEXLIVE_INSTALLER_URL="ftp://tug.org/historic/systems/texlive/2018/tlnet-final"
 
 TEXLIVE_HOME=$BUILD_DIR/.texlive
 TEXLIVE_CACHE=$CACHE_DIR/.texlive
@@ -58,7 +58,7 @@ fi
 
 if [ ! -f $TEXLIVE_HOME/install-tl ]; then
     build-step "getting install-tl"
-    curl $TEXLIVE_INSTALLER_URL -L -s -o - | tar --strip-components=1 -xzf - -C $TEXLIVE_HOME
+    curl "$TEXLIVE_INSTALLER_URL/install-tl-unx.tar.gz" -L -s -o - | tar --strip-components=1 -xzf - -C $TEXLIVE_HOME
 fi
 
 if [ ! `which pdflatex` ]; then
@@ -76,7 +76,7 @@ if [ ! `which pdflatex` ]; then
 
     cd $TEXLIVE_HOME 
 
-    ./install-tl --profile=$PROF --location ftp://tug.org/historic/systems/texlive/2018/tlnet-final
+    ./install-tl --profile=$PROF --location $TEXLIVE_INSTALLER_URL
 fi
 
 tlmgr update --self
