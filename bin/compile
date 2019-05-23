@@ -61,7 +61,7 @@ if [ ! -f $TEXLIVE_HOME/install-tl ]; then
     curl "$TEXLIVE_INSTALLER_URL/install-tl-unx.tar.gz" -L -s -o - | tar --strip-components=1 -xzf - -C $TEXLIVE_HOME
 fi
 
-if [ ! `which pdflatex1234` ]; then
+if [ ! `which pdflatex` ]; then
     build-step "Installing TeX Live"
 
     PROF=$BIN_DIR/../conf/texlive.profile
