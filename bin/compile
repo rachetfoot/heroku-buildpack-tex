@@ -29,7 +29,7 @@ mkdir -p $TOOL_BIN
 mkdir -p $TOOL_CACHE
 mkdir -p `dirname $PROFILE_D`
 
-if [ ! -f $TOOL_BIN/wget ]; then
+if [ ! `which wget` ]; then
     build-step "compiling wget"
 
     build-info "download"
